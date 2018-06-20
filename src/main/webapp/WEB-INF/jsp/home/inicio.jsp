@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>
-	Bem vindo.
+	${welcome}
 </h1>
 </body>
 </html>

@@ -1,23 +1,40 @@
 package br.com.caelum.vraptor.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.dao.ProdutoDao;
 import br.com.caelum.vraptor.model.Produto;
-import br.com.caelum.vraptor.util.JPAUtil;
 
 @Controller
 public class ProdutoController {
 
-	@Path("/")
-	public void inicio() {
+	@Inject
+	private Result result;
+
+	@Inject
+	private ProdutoDao produtoDao;
+
+	@Get
+	public void novo() {
+		this.result.include("headerPage", "Cadastro de Produto");
 	}
 
-	@Path("/produto/lista")
-	public List<Produto> lista() {
-		return new ProdutoDao(JPAUtil.criaEntityManager()).lista();
+	@Post
+	public void salvar(Produto produto) throws UnsupportedEncodingException {
+		produtoDao.adiciona(produto);
+		this.result.redirectTo("/produto/lista");
+	}
+
+	@Get
+	public List<Produto> lista(Produto filtro) {
+		return produtoDao.lista(filtro);
 	}
 
 }

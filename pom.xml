@@ -19,11 +19,11 @@
 			<version>4.0.0.Final</version>
 		</dependency>
 		
-<!-- 		<dependency> -->
-<!-- 			<groupId>br.com.caelum.vraptor</groupId> -->
-<!-- 			<artifactId>vraptor-jpa</artifactId> -->
-<!-- 			<version>4.0.4</version> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>br.com.caelum.vraptor</groupId>
+			<artifactId>vraptor-jpa</artifactId>
+			<version>4.0.4</version>
+		</dependency>
 		
 <!-- 		<dependency> -->
 <!-- 		    <groupId>br.com.caelum.vraptor</groupId> -->
@@ -92,6 +92,7 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+					<encoding>ISO-8859-1</encoding>
 				</configuration>
 			</plugin>
 
