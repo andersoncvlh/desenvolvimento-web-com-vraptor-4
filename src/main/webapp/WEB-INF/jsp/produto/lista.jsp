@@ -10,19 +10,17 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	</head>
 	<body>
-		<div class="container" >
-		
-			<h1>Listagem de Produtos</h1>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" ></script>
+		<script type="text/javascript">
 			
+		</script>
+		<div class="container" >
+			<h1>Listagem de Produtos</h1>
 			<form action="lista" method="get" >
 				<div class="row" >
-					<div class="form-group mb-3 col-8" >
+					<div class="form-group mb-3 col" >
 						<label for="iptNome">Nome</label>
 						<input id="iptNome" name="filtro.nome" class="form-control" />
-					</div>
-					<div class="form-group mb-3 col-4" >
-						<label for="iptQuantidade">Quantidade</label>
-						<input id="iptQuantidade" name="filtro.quantidade" class="form-control" />
 					</div>
 				</div>
 				
@@ -41,33 +39,46 @@
 				</div>
 			</form>
 			
-			<table class="table table-striped table-hover table-bordered" >
-				<thead class="thead-dark" >
-					<tr align="center" >
-						<th scope="col">Nome</th>
-						<th scope="col">Valor</th>
-						<th scope="col">Quantidade</th>
-						<th scope="col">Ações</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${produtoList}" var="produto" >
-						<tr>
-							<td align="left">${produto.nome}</td>
-							<td align="right">${produto.valor}</td>
-							<td align="right">${produto.quantidade}</td>
-							<td align="center" >
-								<a href="novo" role="button" class="btn btn-sm btn-primary" >
-									<i class="fas fa-edit"></i>
-								</a>
-								<a href="remover" role="button" class="btn btn-sm btn-danger" >
-									<i class="fas fa-trash"></i>
-								</a>
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+			<c:choose>
+				<c:when test="${empty produtoList}">
+					<div class="alert alert-warning" role="alert">
+						A consulta não retornou nenhum resultado.
+					</div>
+				</c:when>
+				<c:otherwise>
+					<table class="table table-striped table-hover table-bordered" >
+						<thead class="thead-dark" >
+							<tr align="center" >
+								<th scope="col">Nome</th>
+								<th scope="col">Valor</th>
+								<th scope="col">Quantidade</th>
+								<th scope="col">Ações</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${produtoList}" var="produto" >
+								<tr>
+									<td align="left">${produto.nome}</td>
+									<td align="right">${produto.valor}</td>
+									<td align="right">${produto.quantidade}</td>
+									<td align="center" >
+										<a href="editar/${produto.id}" role="button" class="btn btn-sm btn-primary" >
+											<i class="fas fa-edit"></i>
+										</a>
+										<form action="${linkTo[ProdutoController].remover(produto.id)}" method="post">
+											<input type="hidden" name="_method" value="DELETE"/>
+											<button type="submit" class="btn btn-sm btn-danger" >
+												<i class="fas fa-trash"></i>
+											</button>
+										</form>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:otherwise>
+			</c:choose>
+			
 		</div>
 	</body>
 </html>

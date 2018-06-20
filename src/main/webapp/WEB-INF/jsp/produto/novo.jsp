@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,19 +15,20 @@
 		<h1>${headerPage}</h1>
 		<form action="salvar" method="post" >
 			<div class="row" >
+				<input type="hidden" name="produto.id" value="${produto.id}"/>
 				<div class="form-group mb-3 col-6" >
 					<label for="iptNome">Nome</label>
-					<input id="iptNome" name="produto.nome" class="form-control" />
+					<input id="iptNome" name="produto.nome" value="${produto.nome}" class="form-control" />
 				</div>
 				
 				<div class="form-group mb-3 col-3" >
 					<label for="iptValor">Valor</label>
-					<input id="iptValor" name="produto.valor" class="form-control" />
+					<input id="iptValor" name="produto.valor" value="${produto.valor}" class="form-control" />
 				</div>
 				
 				<div class="form-group mb-3 col-3" >
 					<label for="iptQuantidade">Quantidade</label>
-					<input id="iptQuantidade" name="produto.quantidade" class="form-control" />
+					<input id="iptQuantidade" name="produto.quantidade" value="${produto.quantidade}" class="form-control" />
 				</div>
 			</div>
 			

@@ -14,13 +14,20 @@ public class ProdutoDao {
 	private EntityManager entityManager;
 
 	public void adiciona(Produto produto) {
-		entityManager.persist(produto);
+		if (null == produto.getId()) {
+			entityManager.persist(produto);
+		} else {
+			entityManager.merge(produto);
+		}
 	}
 
 	public void remove(Produto produto) {
 		entityManager.remove(busca(produto));
 	}
 
+	public Produto buscaPorId(Long id) {
+		return entityManager.find(Produto.class, id);
+	}
 	public Produto busca(Produto produto) {
 		return entityManager.find(Produto.class, produto.getId());
 	}
@@ -31,15 +38,9 @@ public class ProdutoDao {
 		if (null != filtro.getNome() && !"".equals(filtro.getNome())) {
 			sql.append(" and p.nome LIKE :nome");
 		}
-		if (null != filtro.getQuantidade() && !"".equals(filtro.getQuantidade())) {
-			sql.append(" and p.quantidade = :quantidade");
-		}
 		TypedQuery<Produto> query = entityManager.createQuery(sql.toString(), Produto.class);
 		if (null != filtro.getNome() && !"".equals(filtro.getNome())) {
 			query.setParameter("nome", "%" + filtro.getNome() + "%");
-		}
-		if (null != filtro.getQuantidade() && !"".equals(filtro.getQuantidade())) {
-			query.setParameter("quantidade", filtro.getQuantidade());
 		}
 
 		return query.getResultList();
