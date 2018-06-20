@@ -32,13 +32,13 @@
 			<div class="form-group" >
 				<div class="btn-group" >
 					<button type="submit" class="btn btn-sm btn-secondary" >
-						Salvar
+						<i class="fas fa-save"></i> Salvar
 					</button>
 					<button type="reset" class="btn btn-sm btn-light">
-						Limpar
+						<i class="fas fa-sync-alt"></i> Limpar
 					</button>
 					<a href="lista" role="button" class="btn btn-sm btn-primary">
-						Voltar
+						<i class="fas fa-backward"></i> Voltar
 					</a>
 				</div>
 			</div>
