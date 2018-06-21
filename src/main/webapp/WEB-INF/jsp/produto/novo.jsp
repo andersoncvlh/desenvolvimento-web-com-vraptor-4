@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:import url="../header.jsp" />
+<%@ include file="/header.jsp" %> 
 	<form action="salvar" method="post" >
 		<div class="row" >
 			<input type="hidden" name="produto.id" value="${produto.id}"/>
@@ -35,4 +32,4 @@
 			</div>
 		</div>
 	</form>
-<c:import url="../footer.jsp" />
+<%@ include file="/footer.jsp" %>
