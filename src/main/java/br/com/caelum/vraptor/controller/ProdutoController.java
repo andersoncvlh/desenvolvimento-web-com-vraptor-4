@@ -8,15 +8,11 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
-import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.dao.ProdutoDao;
 import br.com.caelum.vraptor.model.Produto;
 
 @Controller
-public class ProdutoController {
-
-	@Inject
-	private Result result;
+public class ProdutoController extends BaseController {
 
 	@Inject
 	private ProdutoDao produtoDao;
@@ -25,14 +21,15 @@ public class ProdutoController {
 	public void novo(Produto produto) {
 		this.result.include("produto", produto);
 		if (null != produto.getId()) {
-			this.result.include("headerPage", "Editação de Produto");
+			setTitleAndHeaderPage("Cadastro de Produto");
 		} else {
-			this.result.include("headerPage", "Cadastro de Produto");
+			setTitleAndHeaderPage("Cadastro de Produto");
 		}
 	}
 
 	@Get
 	public void lista(Produto filtro) {
+		setTitleAndHeaderPage("Listagem de Produtos");
 		this.result.include("produtoList", produtoDao.lista(filtro));
 	}
 
