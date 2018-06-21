@@ -38,6 +38,7 @@ public class ProdutoDao {
 		if (null != filtro.getNome() && !"".equals(filtro.getNome())) {
 			sql.append(" and p.nome LIKE :nome");
 		}
+		sql.append(" order by p.nome ");
 		TypedQuery<Produto> query = entityManager.createQuery(sql.toString(), Produto.class);
 		if (null != filtro.getNome() && !"".equals(filtro.getNome())) {
 			query.setParameter("nome", "%" + filtro.getNome() + "%");

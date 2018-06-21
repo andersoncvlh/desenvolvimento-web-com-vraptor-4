@@ -21,7 +21,6 @@
 			</div>
 		</div>
 	</form>
-	
 	<c:choose>
 		<c:when test="${empty produtoList}">
 			<div class="alert alert-warning" role="alert">
@@ -45,11 +44,11 @@
 							<td align="right">${produto.valor}</td>
 							<td align="right">${produto.quantidade}</td>
 							<td align="center" >
-								<a href="editar/${produto.id}" role="button" class="btn btn-sm btn-primary" >
-									<i class="fas fa-edit"></i>
-								</a>
 								<form action="${linkTo[ProdutoController].remover(produto.id)}" method="post">
 									<input type="hidden" name="_method" value="DELETE"/>
+									<a href="editar/${produto.id}" role="button" class="btn btn-sm btn-primary" >
+										<i class="fas fa-edit"></i>
+									</a>
 									<button type="submit" class="btn btn-sm btn-danger" >
 										<i class="fas fa-trash"></i>
 									</button>
