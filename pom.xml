@@ -24,6 +24,12 @@
 			<artifactId>vraptor-jpa</artifactId>
 			<version>4.0.4</version>
 		</dependency>
+		<dependency>
+	        <groupId>javax.servlet</groupId>
+	        <artifactId>jsp-api</artifactId>
+	        <version>2.0</version>
+	        <scope>provided</scope>
+	    </dependency>
 		
 <!-- 		<dependency> -->
 <!-- 		    <groupId>br.com.caelum.vraptor</groupId> -->
