@@ -36,7 +36,7 @@ public class ProdutoDao {
 		StringBuilder sql = new StringBuilder("select p from Produto p");
 		sql.append(" where 1=1 ");
 		if (null != filtro.getNome() && !"".equals(filtro.getNome())) {
-			sql.append(" and p.nome LIKE :nome");
+			sql.append(" and lower(p.nome) LIKE lower(:nome)");
 		}
 		sql.append(" order by p.nome ");
 		TypedQuery<Produto> query = entityManager.createQuery(sql.toString(), Produto.class);

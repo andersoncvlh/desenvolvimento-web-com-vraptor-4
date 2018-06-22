@@ -3,12 +3,16 @@ package br.com.caelum.vraptor.controller;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.validator.Validator;
 
 public abstract class BaseController {
 
 	@Inject
 	protected Result result;
 	
+	@Inject
+	protected Validator validator;
+
 	/**
 	 * THE SAME STRING FOR
 	 * 

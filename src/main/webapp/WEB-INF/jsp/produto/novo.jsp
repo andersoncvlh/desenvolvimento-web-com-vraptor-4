@@ -1,20 +1,43 @@
-<%@ include file="/header.jsp" %> 
+<%@ include file="/header.jsp" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %> 
+
+<script>
+</script>
+
 	<form action="salvar" method="post" >
 		<div class="row" >
 			<input type="hidden" name="produto.id" value="${produto.id}"/>
 			<div class="form-group mb-3 col-sm-12 col-md-6" >
 				<label for="iptNome">Nome</label>
-				<input id="iptNome" name="produto.nome" value="${produto.nome}" class="form-control" />
+				<input id="iptNome" name="produto.nome" value="${produto.nome}" 
+					class="form-control"  style="<c:if test="${not empty errors.from('produto.nome')}">border-color: red</c:if>" />
+				<c:if test="${not empty errors.from('produto.nome')}">
+					<div style="color: red">
+						${errors.from('produto.nome')}
+					</div>
+				</c:if>
 			</div>
 			
 			<div class="form-group mb-3 col-sm-12 col-md-3" >
 				<label for="iptValor">Valor</label>
-				<input id="iptValor" name="produto.valor" value="${produto.valor}" class="form-control" />
+				<input id="iptValor" name="produto.valor" value="${produto.valor}"  
+					class="form-control" style="<c:if test="${not empty errors.from('produto.valor')}">border-color: red</c:if>" />
+				<c:if test="${not empty errors.from('produto.valor')}">
+					<div style="color: red">
+						${errors.from('produto.valor')}
+					</div>
+				</c:if>
 			</div>
 			
 			<div class="form-group mb-3 col-sm-12 col-md-3" >
 				<label for="iptQuantidade">Quantidade</label>
-				<input id="iptQuantidade" name="produto.quantidade" value="${produto.quantidade}" class="form-control" />
+				<input id="iptQuantidade" name="produto.quantidade" value="${produto.quantidade}" type="number"
+					class="form-control" style="<c:if test="${not empty errors.from('produto.quantidade')}">border-color: red</c:if>" />
+				<c:if test="${not empty errors.from('produto.quantidade')}">
+					<div style="color: red">
+						${errors.from('produto.quantidade')}
+					</div>
+				</c:if>
 			</div>
 		</div>
 		

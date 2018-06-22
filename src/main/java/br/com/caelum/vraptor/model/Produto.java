@@ -3,6 +3,10 @@ package br.com.caelum.vraptor.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 
 @Entity
@@ -11,10 +15,14 @@ public class Produto {
 	@GeneratedValue @Id
 	private Long id;
 
+	@NotBlank(message = "{produto.nome.vazio}")
+	@Size(min = 5, max = 255, message = "{produto.nome.tamanho}")
 	private String nome;
 	
+	@NotNull(message = "{produto.valor.nulo}")
 	private Double valor;
 	
+	@NotNull(message = "{produto.quantidade.nulo}")
 	private Integer quantidade;
 
 	public Produto() {

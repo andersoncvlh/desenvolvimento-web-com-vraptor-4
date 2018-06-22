@@ -3,6 +3,7 @@ package br.com.caelum.vraptor.controller;
 import java.io.UnsupportedEncodingException;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
@@ -21,7 +22,7 @@ public class ProdutoController extends BaseController {
 	public void novo(Produto produto) {
 		this.result.include("produto", produto);
 		if (null != produto.getId()) {
-			setTitleAndHeaderPage("Cadastro de Produto");
+			setTitleAndHeaderPage("Edição de Produto");
 		} else {
 			setTitleAndHeaderPage("Cadastro de Produto");
 		}
@@ -34,9 +35,13 @@ public class ProdutoController extends BaseController {
 	}
 
 	@Post
-	public void salvar(Produto produto) throws UnsupportedEncodingException {
-		produtoDao.adiciona(produto);
-		this.result.redirectTo(this).lista(produto);
+	public void salvar(@Valid Produto produto) throws UnsupportedEncodingException {
+		if (this.validator.hasErrors() && !this.validator.getErrors().isEmpty()) {
+			this.validator.onErrorRedirectTo(this).novo(produto);
+		} else {
+			produtoDao.adiciona(produto);
+			this.result.redirectTo(this).lista(produto);
+		}
 	}
 
 	@Get("/produto/editar/{id}")
